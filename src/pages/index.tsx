@@ -1,115 +1,85 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import HomeFooter from "@/components/home/Footer";
+import HomeNavbar from "@/components/home/Navbar";
+import Head from "next/head";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa6";
+import { useInView } from "../hooks/useInView";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+function Homepage() {
+  const [ref, isInView] = useInView<HTMLDivElement>({
+    threshold: 0.2,
+  });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-export default function Home() {
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      <Head>
+        <title>T.T. Board</title>
+      </Head>
+
+      <HomeNavbar />
+
+      <div className="bg-gradient-to-b via-white from-orange-50 to-white">
+        <div className="w-full">
+          <div className="w-[1280px] mx-auto py-[80px] flex justify-center items-center flex-col gap-[10px]">
+            <div className="text-[50px] font-bold text-gray-800 leading-[1.3em] text-center">
+              Easy task management. <br />
+              Teamwork that feels like play.
+            </div>
+            <div className="text-[20px] text-gray-500 font-light">
+              Get things done together - the fun way.
+            </div>
+            <div className="mt-[20px]">
+              <Link href="/login">
+                <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-orange-500 text-white px-[30px] py-[12px] rounded-full hover:bg-orange-600 active:bg-orange-700 transition cursor-pointer">
+                  Get Started <FaArrowRight />
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="w-full">
+          <div className="w-[1280px] mx-auto flex justify-center items-center flex-col gap-[30px]">
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0, y: 50 }}
+              animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <img src="/images/home/preview.png" />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full bg-orange-50 py-[60px] mt-[80px]">
+        <div className="w-[1280px] mx-auto flex justify-center items-center flex-col gap-[30px]">
+          <div className="text-[35px] font-bold text-gray-800 leading-[0.9em]">
+            Try T.T. Board for Free
+          </div>
+          <div>
+            <Link href="/login">
+              <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-orange-500 text-white px-[30px] py-[12px] rounded-full hover:bg-orange-600 active:bg-orange-700 transition cursor-pointer">
+                Get Started <FaArrowRight />
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <HomeFooter />
     </div>
   );
 }
+
+export default Homepage;
