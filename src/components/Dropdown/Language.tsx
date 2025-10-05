@@ -33,6 +33,7 @@ function DropdownLanguage() {
   const changeLanguage = (languageCode?: string): void => {
     if (!languageCode) return;
     i18n.changeLanguage(languageCode);
+    localStorage.setItem("lang", languageCode)
   };
 
   return (
