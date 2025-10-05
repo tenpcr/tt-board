@@ -7,6 +7,8 @@ import { CSSProperties, useEffect, useRef, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
+import DropdownLanguage from "@/components/Dropdown/Language";
 
 interface InputDataTypes {
   email: string;
@@ -38,6 +40,7 @@ const alertDefault: AlertTypes = {
 
 function Login() {
   const router = useRouter();
+  const { t } = useTranslation();
   const [ref, isInView] = useInView<HTMLDivElement>({
     threshold: 0.2,
   });
@@ -79,13 +82,13 @@ function Login() {
     setAlert(alertDefault);
 
     if (!inputData?.email) {
-      setAletEmail("Please enter your email.");
+      setAletEmail(t("please_enter_your_email"));
       return;
     } else if (!helper.validateEmail(inputData?.email)) {
-      setAletEmail("Invalid email format.");
+      setAletEmail(t("invalid_email_format"));
       return;
     } else if (!inputData?.password) {
-      setAletPassword("Please enter your password.");
+      setAletPassword(t("please_enter_your_password"));
       return;
     }
 
@@ -98,7 +101,7 @@ function Login() {
   return (
     <div>
       <Head>
-        <title>Login</title>
+        <title>{t("login")}</title>
       </Head>
       <div className="bg-slate-900 w-full min-h-screen flex flex justify-center items-center p-[50px]">
         <div className="flex flex-col gap-[20px] flex-1 justify-between">
@@ -118,14 +121,14 @@ function Login() {
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                   <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-center text-[30px] font-semibold leading-tight tracking-tight text-gray-900 dark:text-white">
-                      Login
+                      {t("login")}
                     </h1>
                     <div>
                       <label
                         htmlFor="email"
                         className="block mb-2 text-[15px] font-normal text-gray-900 dark:text-white"
                       >
-                        Email
+                        {t("email")}
                       </label>
                       <input
                         ref={emailRef}
@@ -153,13 +156,12 @@ function Login() {
                         htmlFor="password"
                         className="block mb-2 text-[15px] font-normaltext-gray-900 dark:text-white"
                       >
-                        Password
+                        {t("password")}
                       </label>
                       <input
                         type="password"
                         name="password"
                         id="password"
-                        placeholder="••••••••"
                         value={inputData?.password}
                         onChange={(event) => {
                           setInputData((draft) => {
@@ -196,12 +198,12 @@ function Login() {
                             htmlFor="remember"
                             className="text-gray-500 dark:text-gray-300"
                           >
-                            Remember me
+                            {t("remember_me")}
                           </label>
                         </div>
                       </div>
                       <span className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
-                        <Link href="/forgot">Forgot password?</Link>
+                        <Link href="/forgot">{t("forgot_password_q")}</Link>
                       </span>
                     </div>
                     <button
@@ -220,14 +222,14 @@ function Login() {
                           data-testid="loader"
                         />
                       ) : (
-                        "Login"
+                        t("login")
                       )}
                     </button>
                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                      Don’t have an account yet?{" "}
+                      {t("dont_have_an_account_yet_q")}{" "}
                       <Link href="/signup">
                         <span className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                          Sign up
+                          {t("sign_up")}
                         </span>
                       </Link>
                     </p>
@@ -236,6 +238,10 @@ function Login() {
               </div>
             </section>
           </motion.div>
+
+          <section className="w-full flex justify-center">
+            <DropdownLanguage />
+          </section>
         </div>
       </div>
     </div>
