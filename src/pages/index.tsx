@@ -6,8 +6,12 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useInView } from "../hooks/useInView";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 function Homepage() {
+  const { t } = useTranslation();
+
   const [ref, isInView] = useInView<HTMLDivElement>({
     threshold: 0.2,
   });
@@ -32,16 +36,15 @@ function Homepage() {
         <div className="w-full">
           <div className="w-[1280px] mx-auto py-[80px] flex justify-center items-center flex-col gap-[10px]">
             <div className="text-[50px] font-bold text-gray-800 leading-[1.3em] text-center">
-              Easy task management. <br />
-              Teamwork that feels like play.
+              <Trans i18nKey={t("main_slogan")}></Trans>
             </div>
             <div className="text-[20px] text-gray-500 font-light">
-              Get things done together - the fun way.
+               <Trans i18nKey={t("sub_slogan")}></Trans>
             </div>
             <div className="mt-[20px]">
               <Link href="/login">
                 <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-orange-500 text-white px-[30px] py-[12px] rounded-full hover:bg-orange-600 active:bg-orange-700 transition cursor-pointer">
-                  Get Started <FaArrowRight />
+                  {t("get_started")} <FaArrowRight />
                 </button>
               </Link>
             </div>
@@ -65,12 +68,14 @@ function Homepage() {
       <div className="w-full bg-orange-50 py-[60px] mt-[80px]">
         <div className="w-[1280px] mx-auto flex justify-center items-center flex-col gap-[30px]">
           <div className="text-[35px] font-bold text-gray-800 leading-[0.9em]">
-            Try T.T. Board for Free
+            {t("try_system_project_name_for_free", {
+              system_project_name: t("system_project_name"),
+            })}
           </div>
           <div>
             <Link href="/login">
               <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-orange-500 text-white px-[30px] py-[12px] rounded-full hover:bg-orange-600 active:bg-orange-700 transition cursor-pointer">
-                Get Started <FaArrowRight />
+                {t("get_started")} <FaArrowRight />
               </button>
             </Link>
           </div>

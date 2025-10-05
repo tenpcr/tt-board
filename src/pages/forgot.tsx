@@ -7,6 +7,7 @@ import { CSSProperties, useEffect, useRef, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 interface InputDataTypes {
   email: string;
@@ -23,15 +24,16 @@ const override: CSSProperties = {
 };
 
 const inputDataDefault: InputDataTypes = {
-  email: "admin@tt-ss.net"
+  email: "admin@tt-ss.net",
 };
 
 const alertDefault: AlertTypes = {
-  email: ""
+  email: "",
 };
 
 function ForgotPassword() {
   const router = useRouter();
+  const { t } = useTranslation();
   const [ref, isInView] = useInView<HTMLDivElement>({
     threshold: 0.2,
   });
@@ -67,10 +69,10 @@ function ForgotPassword() {
     setAlert(alertDefault);
 
     if (!inputData?.email) {
-      setAletEmail("Please enter your email.");
+      setAletEmail(t("please_enter_your_email"));
       return;
     } else if (!helper.validateEmail(inputData?.email)) {
-      setAletEmail("Invalid email format.");
+      setAletEmail(t("invalid_email_format"));
       return;
     }
 
@@ -83,7 +85,7 @@ function ForgotPassword() {
   return (
     <div>
       <Head>
-        <title>Forgot password</title>
+        <title>{t("forgot_password")}</title>
       </Head>
       <div className="bg-slate-900 w-full min-h-screen flex flex justify-center items-center p-[50px]">
         <div className="flex flex-col gap-[20px] flex-1 justify-between">
@@ -103,17 +105,17 @@ function ForgotPassword() {
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                   <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-center text-[30px] font-semibold leading-[0.5em] tracking-tight text-gray-900">
-                      Forgot password
+                      {t("forgot_password")}
                     </h1>
                     <div className="text-center text-gray-400">
-                      Enter your email to reset your password.
+                      {t("enter_your_email_to_reset_your_password")}
                     </div>
                     <div>
                       <label
                         htmlFor="email"
                         className="block mb-2 text-[15px] font-normal text-gray-900 dark:text-white"
                       >
-                        Email
+                        {t("email")}
                       </label>
                       <input
                         ref={emailRef}
@@ -152,7 +154,7 @@ function ForgotPassword() {
                           data-testid="loader"
                         />
                       ) : (
-                        "Request password reset"
+                        t("request_password_reset")
                       )}
                     </button>
                   </div>
