@@ -7,6 +7,8 @@ import { PulseLoader } from "react-spinners";
 import { useImmer } from "use-immer";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
+import DropdownLanguage from "@/components/Dropdown/Language";
 
 interface InputDataTypes {
   firstname: string;
@@ -48,6 +50,7 @@ const alertDefault: AlertTypes = {
 
 function Signup() {
   const router = useRouter();
+  const { t } = useTranslation();
   const [ref, isInView] = useInView<HTMLDivElement>({
     threshold: 0.2,
   });
@@ -107,26 +110,26 @@ function Signup() {
     setAlert(alertDefault);
 
     if (!inputData?.firstname) {
-      setAlertFirstName("Please enter your first name.");
+      setAlertFirstName(t("please_enter_your_first_name"));
       return;
     } else if (!inputData?.lastname) {
-      setAlertLastName("Please enter your last name.");
+      setAlertLastName(t("please_enter_your_last_name"));
       return;
     } else if (!inputData?.email) {
-      setAletEmail("Please enter your email.");
+      setAletEmail(t("please_enter_your_email"));
       return;
     } else if (!helper.validateEmail(inputData?.email)) {
-      setAletEmail("Invalid email format.");
+      setAletEmail(t("invalid_email_format"));
       return;
     } else if (!inputData?.password) {
-      setAletPassword("Please enter your password.");
+      setAletPassword(t("please_enter_your_password"));
       return;
     } else if (!inputData?.confirm_password) {
-      setAletConfirmPassword("Please re-enter your password.");
+      setAletConfirmPassword(t("please_re_enter_your_password"));
       return;
     } else if (inputData?.password !== inputData?.confirm_password) {
-      setAletPassword("Passwords do not match.");
-      setAletConfirmPassword("Passwords do not match.");
+      setAletPassword(t("passwords_do_not_match"));
+      setAletConfirmPassword(t("passwords_do_not_match"));
       return;
     }
 
@@ -139,7 +142,7 @@ function Signup() {
   return (
     <div>
       <Head>
-        <title>Sign up</title>
+        <title>{t("sign_up")}</title>
       </Head>
       <div className="bg-slate-900 w-full min-h-screen flex flex justify-center items-center p-[50px]">
         <div className="flex flex-col gap-[20px] flex-1 justify-between">
@@ -159,7 +162,7 @@ function Signup() {
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                   <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-center text-[30px] font-semibold leading-tight tracking-tight text-gray-900 dark:text-white">
-                      Sign up
+                      {t("sign_up")}
                     </h1>
 
                     <div>
@@ -167,7 +170,7 @@ function Signup() {
                         htmlFor="firstname"
                         className="block mb-2 text-[15px] font-normal text-gray-900 dark:text-white"
                       >
-                        First name
+                        {t("first_name")}
                       </label>
                       <input
                         ref={firstnameRef}
@@ -193,7 +196,7 @@ function Signup() {
                         htmlFor="lastname"
                         className="block mb-2 text-[15px] font-normal text-gray-900 dark:text-white"
                       >
-                        Last name
+                        {t("last_name")}
                       </label>
                       <input
                         type="text"
@@ -219,7 +222,7 @@ function Signup() {
                         htmlFor="email"
                         className="block mb-2 text-[15px] font-normal text-gray-900 dark:text-white"
                       >
-                        Your email
+                        {t("email")}
                       </label>
                       <input
                         type="text"
@@ -245,13 +248,12 @@ function Signup() {
                         htmlFor="password"
                         className="block mb-2 text-[15px] font-normaltext-gray-900 dark:text-white"
                       >
-                        Password
+                        {t("password")}
                       </label>
                       <input
                         type="password"
                         name="password"
                         id="password"
-                        placeholder="••••••••"
                         value={inputData?.password}
                         onChange={(event) => {
                           setInputData((draft) => {
@@ -273,13 +275,12 @@ function Signup() {
                         htmlFor="confirm_password"
                         className="block mb-2 text-[15px] font-normaltext-gray-900 dark:text-white"
                       >
-                        Confirm password
+                        {t("confirm_password")}
                       </label>
                       <input
                         type="password"
                         name="confirm password"
                         id="confirm_password"
-                        placeholder="••••••••"
                         value={inputData?.confirm_password}
                         onChange={(event) => {
                           setInputData((draft) => {
@@ -311,7 +312,7 @@ function Signup() {
                           data-testid="loader"
                         />
                       ) : (
-                        "Sign up"
+                        t("sign_up")
                       )}
                     </button>
                   </div>
@@ -319,6 +320,10 @@ function Signup() {
               </div>
             </section>
           </motion.div>
+
+          <section className="w-full flex justify-center">
+            <DropdownLanguage />
+          </section>
         </div>
       </div>
     </div>

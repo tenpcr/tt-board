@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+
 import {
   FaLinkedinIn,
   FaYoutube,
   FaFacebookSquare,
   FaGithub,
 } from "react-icons/fa";
+import DropdownLanguage from "../Dropdown/Language";
 
 interface MenuTypes {
   label: string;
@@ -18,48 +21,6 @@ interface SocialTypes {
   icon: any;
   href: string;
 }
-
-const menu: MenuTypes[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Products/Services",
-    href: "https://www.tt-ss.net/en/services",
-    target: "blank",
-  },
-  {
-    label: "Our Works",
-    href: "https://www.tt-ss.net/en/our-works",
-    target: "blank",
-  },
-  {
-    label: "Standards & Certifications",
-    href: "https://www.tt-ss.net/en/our-standard",
-    target: "blank",
-  },
-  {
-    label: "Our Team",
-    href: "https://www.tt-ss.net/en/our-team",
-    target: "blank",
-  },
-  {
-    label: "Resources",
-    href: "https://portal.tt-ss.net/",
-    target: "blank",
-  },
-  {
-    label: "Career",
-    href: "https://www.tt-ss.net/en/career",
-    target: "blank",
-  },
-  {
-    label: "Contact Us",
-    href: "https://www.tt-ss.net/en/contact-us",
-    target: "blank",
-  },
-];
 
 const socials: SocialTypes[] = [
   {
@@ -85,35 +46,90 @@ const socials: SocialTypes[] = [
 ];
 
 function HomeFooter() {
+  const { t } = useTranslation();
+
+  const menu: MenuTypes[] = [
+    {
+      label: t("home"),
+      href: "/",
+    },
+    {
+      label: t("products_services"),
+      href: "https://www.tt-ss.net/en/services",
+      target: "blank",
+    },
+    {
+      label: t("our_works"),
+      href: "https://www.tt-ss.net/en/our-works",
+      target: "blank",
+    },
+    {
+      label: t("standards_n_certifications"),
+      href: "https://www.tt-ss.net/en/our-standard",
+      target: "blank",
+    },
+    {
+      label: t("our_team"),
+      href: "https://www.tt-ss.net/en/our-team",
+      target: "blank",
+    },
+    {
+      label: t("resources"),
+      href: "https://portal.tt-ss.net/",
+      target: "blank",
+    },
+    {
+      label: t("career"),
+      href: "https://www.tt-ss.net/en/career",
+      target: "blank",
+    },
+    {
+      label: t("contact_us"),
+      href: "https://www.tt-ss.net/en/contact-us",
+      target: "blank",
+    },
+  ];
+
   return (
-    <footer className="w-full py-[30px] bg-white text-center text-sm text-gray-500">
+    <footer className="w-full py-[30px] text-center text-sm text-gray-500 bg-white">
       <div className="w-[1280px] mx-auto flex flex-col gap-[20px]">
         <div className="w-full flex flex-row">
           <div className="flex-none">
-            <img src="/images/logo-black.svg" className="h-[30px]" />
+            <Link href="/">
+              <img src="/images/logo-black.svg" className="h-[30px]" />
+            </Link>
           </div>
           <div className="flex-1 shrink grid grid-cols-4 gap-[15px]">
             {menu?.map((menuItem: MenuTypes, menuIndex: number) => (
               <div key={menuIndex}>
                 {menuItem?.target === "blank" ? (
-                  <Link href={menuItem?.href} legacyBehavior>
-                    <a target="_blank">
-                      <div>{menuItem?.label}</div>
-                    </a>
-                  </Link>
+                  <div>
+                    <Link href={menuItem?.href} legacyBehavior>
+                      <a target="_blank">
+                        <span className="hover:underline">
+                          {menuItem?.label}
+                        </span>
+                      </a>
+                    </Link>
+                  </div>
                 ) : (
-                  <Link href={menuItem?.href}>
-                    <div>{menuItem?.label}</div>
-                  </Link>
+                  <div>
+                    <Link href={menuItem?.href}>
+                      <span className="hover:underline">{menuItem?.label}</span>
+                    </Link>
+                  </div>
                 )}
               </div>
             ))}
           </div>
         </div>
 
-        <div className="w-full mx-auto border-t border-gray-200 py-[15px] flex-row flex justify-between">
-          <div>
-            <span>© 2025 T.T. Software Solution. All rights reserved.</span>
+        <div className="w-full mx-auto border-t border-gray-200 pt-[15px] flex-row flex justify-between">
+          <div className="flex flex-row gap-[20px] items-center">
+            <div>
+              <DropdownLanguage />
+            </div>
+            <div>© 2025 T.T. Software Solution. All rights reserved.</div>
           </div>
           <div className="flex flex-wrap gap-[10px] justify-end">
             {socials?.map((itemSocial: SocialTypes, indexSocial: number) => (
