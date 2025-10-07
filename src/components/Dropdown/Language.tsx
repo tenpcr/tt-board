@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dropdown } from "primereact/dropdown";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const languageOptions = [

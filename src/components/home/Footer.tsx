@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import DropdownLanguage from "@/components/dropdown/Language";
 
 import {
   FaLinkedinIn,
@@ -8,7 +9,6 @@ import {
   FaFacebookSquare,
   FaGithub,
 } from "react-icons/fa";
-import DropdownLanguage from "../dropdown/Language";
 
 interface MenuTypes {
   label: string;
