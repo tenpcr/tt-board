@@ -3,8 +3,13 @@ import "./../i18n";
 import type { AppProps } from "next/app";
 import { appWithTranslation, useTranslation } from "next-i18next";
 import { useEffect } from "react";
+import { PrimeReactProvider } from "primereact/api";
 
 function App({ Component, pageProps }: AppProps) {
+  const value = {
+    appendTo: null,
+  };
+  
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -15,7 +20,11 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [i18n]);
 
-  return <Component {...pageProps} />;
+  return (
+    <PrimeReactProvider value={value}>
+      <Component {...pageProps} />
+    </PrimeReactProvider>
+  );
 }
 
 export default appWithTranslation(App);

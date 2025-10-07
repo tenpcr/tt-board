@@ -8,7 +8,7 @@ import { PulseLoader } from "react-spinners";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import DropdownLanguage from "../components/dropdown/Language"
+import DropdownLanguage from "@/components/dropdown/Language"
 
 interface InputDataTypes {
   email: string;
