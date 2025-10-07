@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import DropdownLanguage from "@/components/dropdown/Language";
+import DropdownLanguage from "@/components/dropdown/language"
 
 import {
   FaLinkedinIn,
