@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "framer-motion": "^12.23.22",
     "i18next": "^25.5.3",
     "next": "15.5.4",

@@ -32,5 +32,11 @@
   "please_re_enter_your_password": "โปรดใส่รหัสผ่านอีกครั้ง",
   "passwords_do_not_match": "รหัสผ่านไม่ตรงกัน",
   "enter_your_email_to_reset_your_password": "กรอกอีเมลของคุณเพื่อรีเซ็ตรหัสผ่าน",
-  "request_password_reset": "รีเซ็ตรหัสผ่าน"
+  "request_password_reset": "รีเซ็ตรหัสผ่าน",
+  "my_tasks": "งานของฉัน",
+  "todo_list": "รายการสิ่งที่ต้องทำ",
+  "task_boards": "กระดานงาน",
+  "notifications": "การแจ้งเตือน",
+  "no_data": "ไม่มีข้อมูล",
+  "logout": "ออกจากระบบ "
 }
