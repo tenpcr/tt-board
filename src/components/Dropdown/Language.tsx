@@ -17,7 +17,6 @@ const languageOptions = [
 ];
 
 function DropdownLanguage() {
-  const [language, setLanguage] = useState<string>("EN");
   const { i18n } = useTranslation();
 
   const countryOptionTemplate = (option: any) => {
