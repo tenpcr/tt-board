@@ -8,7 +8,7 @@ import { useImmer } from "use-immer";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import DropdownLanguage from "@/components/dropdown/language";
+import DropdownLanguage from "../components/dropdown/Language"
 
 interface InputDataTypes {
   firstname: string;
