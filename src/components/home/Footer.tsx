@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import DropdownLanguage from "@/components/dropdown/language"
 
 import {
   FaLinkedinIn,
@@ -126,7 +127,7 @@ function HomeFooter() {
         <div className="w-full mx-auto border-t border-gray-200 pt-[15px] flex-row flex justify-between">
           <div className="flex flex-row gap-[20px] items-center">
             <div>
-              
+              <DropdownLanguage />
             </div>
             <div>© 2025 T.T. Software Solution. All rights reserved.</div>
           </div>
