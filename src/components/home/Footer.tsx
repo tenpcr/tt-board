@@ -8,7 +8,7 @@ import {
   FaFacebookSquare,
   FaGithub,
 } from "react-icons/fa";
-import DropdownLanguage from "../Dropdown/Language";
+import DropdownLanguage from "../dropdown/Language";
 
 interface MenuTypes {
   label: string;

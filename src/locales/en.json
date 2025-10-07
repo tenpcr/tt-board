@@ -32,5 +32,11 @@
   "please_re_enter_your_password": "Please re-enter your password.",
   "passwords_do_not_match": "Passwords do not match.",
   "enter_your_email_to_reset_your_password": "Enter your email to reset your password.",
-  "request_password_reset": "Request password reset"
+  "request_password_reset": "Request password reset",
+  "my_tasks": "My Tasks",
+  "todo_list": "Todo List",
+  "task_boards": "Task Boards",
+  "notifications": "Notifications",
+  "no_data": "No data",
+  "logout": "Logout"
 }
