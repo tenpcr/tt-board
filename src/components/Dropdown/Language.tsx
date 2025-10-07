@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dropdown } from "primereact/dropdown";
+
 import { useTranslation } from "react-i18next";
 
 const languageOptions = [
@@ -36,19 +36,7 @@ function DropdownLanguage() {
 
   return (
     <div className="card flex justify-content-center">
-      <Dropdown
-        value={
-          languageOptions?.find((item) => item.value === i18n.language)?.value
-        }
-        onChange={(event: any) => {
-          changeLanguage(event.value);
-        }}
-        options={languageOptions}
-        optionLabel="label"
-        placeholder="Select a Language"
-        className="bg-white border-1 border-gray-300 py-[10px] px-[20px] flex flex-row gap-[10px] rounded"
-        itemTemplate={countryOptionTemplate}
-      />
+
     </div>
   );
 }
