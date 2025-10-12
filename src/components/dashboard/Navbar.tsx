@@ -1,13 +1,14 @@
 import { IoNotificationsOutline } from "react-icons/io5";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoLanguage } from "react-icons/io5";
-import ModalLanguage from "../modals/ModalLanguage";
+import ModalLanguage from "../modal/ModalLanguage";
 
 function NavbarDashboard() {
   const { t } = useTranslation();
+
   const [modalLanguageIsOpen, setModalLanguageIsOpen] =
     useState<boolean>(false);
 
