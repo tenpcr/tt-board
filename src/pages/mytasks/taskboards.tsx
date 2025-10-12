@@ -1,3 +1,4 @@
+import MytasksTab from "@/components/dashboard/mytasks/Tab";
 import TemplateDashboard from "@/components/dashboard/Template";
 import Head from "next/head";
 
