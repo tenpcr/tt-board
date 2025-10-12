@@ -38,5 +38,6 @@
   "task_boards": "กระดานงาน",
   "notifications": "การแจ้งเตือน",
   "no_data": "ไม่มีข้อมูล",
-  "logout": "ออกจากระบบ "
+  "logout": "ออกจากระบบ",
+  "change_language": "เปลี่ยนภาษา"
 }
