@@ -2,30 +2,38 @@
 import MytasksTab from "@/components/dashboard/mytasks/Tab";
 import TemplateDashboard from "@/components/dashboard/Template";
 import Head from "next/head";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoMdTime } from "react-icons/io";
 import DrawerTask from "@/components/dashboard/mytasks/DrawerTask";
+import DrawerAddNewTask from "@/components/dashboard/mytasks/DrawerAddNewTask";
 import * as taskService from "@/services/taskService";
 import { useLoading } from "@/hooks/useLoading";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openTaskView } from "@/redux/slices/taskViewSlice";
 import { useTranslation } from "react-i18next";
 import * as Helper from "@/utils/helper";
 import { useRouter } from "next/router";
+import withAuthUser from "@/utils/withAuthUser";
 
 const TASK_LIMIT = 20;
 
 function TodoList() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const dispatch = useDispatch();
-  const [isOpen, setOpen] = useState<boolean>(false);
+  const [showAddTaskDrawer, setShowAddTaskDrawer] = useState<boolean>(false);
   const [tasks, setTasks] = useState<any>([]);
   const [taskCount, setTaskCount] = useState<number>(0);
   const [pageCount, setPageCount] = useState<number>(1);
+  const [reloadTask, setReloadTask] = useState<string>("");
   const loading = useLoading();
+
+  const authState = useSelector((state: any) => state.auth);
+
+  useEffect(() => {
+    console.log(authState);
+  }, [authState]);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -51,7 +59,7 @@ function TodoList() {
       }
     };
     fetchTasks();
-  }, [router?.query?.page]);
+  }, [router?.query?.page, reloadTask]);
 
   const handlePageChange = (newPage: number) => {
     router.push({
@@ -70,7 +78,7 @@ function TodoList() {
     return (
       <div className="flex flex-row gap-[10px] items-center">
         <div className="p-[6px] text-[14px] text-gray-500">
-          Page{" "}
+          {t("page")}{" "}
           {parseInt(
             typeof router?.query?.page === "string" ? router.query.page : "1"
           ) > 0
@@ -78,7 +86,7 @@ function TodoList() {
               ? router.query.page
               : 1
             : 1}
-          /{pageCount}
+          /{pageCount > 0 ? pageCount : 1}
         </div>
 
         <button
@@ -115,13 +123,32 @@ function TodoList() {
 
   return (
     <div className="h-full p-[20px]">
-      <DrawerTask open={isOpen} isOpen={isOpen} setOpen={setOpen} />
+      <DrawerTask
+        onReload={() => {
+          setReloadTask(new Date()?.toString());
+        }}
+      />
+
+      <DrawerAddNewTask
+        show={showAddTaskDrawer}
+        onAddSuccess={() => {
+          setReloadTask(new Date()?.toString());
+          router.push("/mytasks/todolist");
+        }}
+        onClose={() => {
+          setShowAddTaskDrawer(false);
+        }}
+      />
 
       <Head>
-        <title>Todo List</title>
+        <title>{t("todo_list")}</title>
       </Head>
       <div>
-        <MytasksTab />
+        <MytasksTab
+          onClickAddTask={() => {
+            setShowAddTaskDrawer(true);
+          }}
+        />
         <div className="mt-[10px] flex flex-row justify-between items-center">
           <div>
             <h1 className="text-[20px] font-bold text-gray-700">
@@ -183,10 +210,18 @@ function TodoList() {
                     <td className="border border-gray-300 p-[15px] text-[14px] text-gray-500 align-top border-r-0">
                       {taskItem?.due_date && (
                         <div className="flex flex-col gap-[6px]">
-                          <div>{Helper.getDate(taskItem?.due_date)}</div>
+                          <div>
+                            {Helper.getDate(
+                              taskItem?.due_date,
+                              i18n.language === "th" ? "th" : "en"
+                            )}
+                          </div>
                           <div className="flex flex-row gap-[5px]">
                             <IoMdTime size={18} />
-                            {Helper.getTime(taskItem?.due_date, "th")}
+                            {Helper.getTime(
+                              taskItem?.due_date,
+                              i18n.language === "th" ? "th" : "en"
+                            )}
                           </div>
                         </div>
                       )}
@@ -199,8 +234,9 @@ function TodoList() {
 
         <div className="mt-[10px] flex flex-row justify-between items-center">
           <div className="p-[6px] text-[14px] text-gray-400">
-            Total: {taskCount?.toLocaleString()}{" "}
-            {taskCount === 1 ? "task" : "tasks"}
+            {taskCount === 1
+              ? t("total_task", { count: taskCount })
+              : t("total_tasks", { count: taskCount })}
           </div>
           <Pagination />
         </div>
@@ -209,4 +245,4 @@ function TodoList() {
   );
 }
 
-export default TemplateDashboard(TodoList);
+export default withAuthUser(TemplateDashboard(TodoList));

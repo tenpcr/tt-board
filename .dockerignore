@@ -1,0 +1,44 @@
+# Ignore node_modules
+node_modules
+
+# Build output directories
+.next
+out
+dist
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# IDE/editor config files
+.vscode
+.idea
+*.iml
+
+# Docker files
+Dockerfile*
+docker-compose*
+
+# Test and coverage
+coverage
+__tests__
+*.spec.ts
+*.spec.js
+*.test.ts
+*.test.js
+
+# Miscellaneous
+README.md

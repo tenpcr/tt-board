@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import ModalConfirm from "../modal/ModalConfirm";
 
 function HomeNavbar() {
   const { t } = useTranslation();

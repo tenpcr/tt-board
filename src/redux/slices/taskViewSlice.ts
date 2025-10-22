@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TaskViewState {
@@ -16,14 +15,14 @@ const tastViewSlice = createSlice({
   initialState,
   reducers: {
     openTaskView: (
-      state: any,
+      state: TaskViewState,
       action: PayloadAction<Omit<TaskViewState, "show">>
     ) => {
       state.show = true;
       state.taskId = action.payload.taskId;
     },
 
-    closeTaskView: (state: any) => {
+    closeTaskView: (state: TaskViewState) => {
       state.show = false;
       state.taskId = "";
     },
