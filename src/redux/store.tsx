@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from '@/redux/reducers';
+import { ComponentType } from "react";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+const createSagaMiddleware = require("redux-saga").default;
+import rootReducer from "@/redux/reducers";
 
-export const store = configureStore({
-  reducer: rootReducer,
-});
+import rootSaga from "./sagas";
 
-const ProviderStore = (Component: React.ComponentType<any>) => {
-  return (props: any) => {
+const sagaMiddleware = createSagaMiddleware();
+
+export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga);
+
+const ProviderStore = <P extends object>(Component: ComponentType<P>) => {
+  return (props: P) => {
     return (
       <Provider store={store}>
         <Component {...props} />
@@ -20,4 +23,5 @@ const ProviderStore = (Component: React.ComponentType<any>) => {
   };
 };
 
+export type RootState = ReturnType<typeof store.getState>;
 export default ProviderStore;

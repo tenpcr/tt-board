@@ -1,16 +1,25 @@
 import { IoNotificationsOutline } from "react-icons/io5";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoLanguage } from "react-icons/io5";
 import ModalLanguage from "../modal/ModalLanguage";
+import ModalConfirm from "../modal/ModalConfirm";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/slices/authSlice"
 
 function NavbarDashboard() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const [isConfirmLogout, setIsConfirmLogout] = useState<boolean>(false);
 
   const [modalLanguageIsOpen, setModalLanguageIsOpen] =
     useState<boolean>(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <div className="w-full flex flex-row justify-between bg-white py-[7px] px-[15px] border-b border-gray-300 top-0">
@@ -92,7 +101,12 @@ function NavbarDashboard() {
               </Menu.Item>
               <Menu.Item>
                 {() => (
-                  <div className="w-full text-gray-500 text-[14px] flex flex-row gap-[5px] py-[15px] px-[10px] items-center cursor-pointer hover:bg-slate-100">
+                  <div
+                    onClick={() => {
+                      setIsConfirmLogout(true);
+                    }}
+                    className="w-full text-gray-500 text-[14px] flex flex-row gap-[5px] py-[15px] px-[10px] items-center cursor-pointer hover:bg-slate-100"
+                  >
                     <div className="w-[25px] flex items-center justify-center">
                       <IoLogOutOutline size={20} />
                     </div>
@@ -109,6 +123,16 @@ function NavbarDashboard() {
         show={modalLanguageIsOpen}
         onClose={() => {
           setModalLanguageIsOpen(false);
+        }}
+      />
+
+      <ModalConfirm
+        title="Log out?"
+        detail="Do you want to log out?"
+        show={isConfirmLogout}
+        toConfirm={handleLogout}
+        onClose={() => {
+          setIsConfirmLogout(false);
         }}
       />
     </div>
