@@ -24,7 +24,7 @@ export const LoadingProvider = ({ children }: { children: ReactNode }) => {
   return (
     <LoadingContext.Provider value={{ isLoading, active }}>
       {isLoading && (
-        <div className="absolute w-full h-full bg-white/60 top-0 left-0 z-[99999] flex items-center justify-center">
+        <div className="fixed w-full h-full bg-white/60 top-0 left-0 z-[99999] flex items-center justify-center">
         
           <HashLoader
             color="#e87b35"

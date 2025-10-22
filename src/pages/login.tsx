@@ -8,7 +8,9 @@ import { PulseLoader } from "react-spinners";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import DropdownLanguage from "@/components/dropdown/Language"
+import DropdownLanguage from "@/components/dropdown/Language";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "@/redux/slices/authSlice";
 
 interface InputDataTypes {
   email: string;
@@ -40,6 +42,7 @@ const alertDefault: AlertTypes = {
 
 function Login() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [ref, isInView] = useInView<HTMLDivElement>({
     threshold: 0.2,
@@ -93,6 +96,9 @@ function Login() {
     }
 
     setIsLoading(true);
+
+    dispatch(loginSuccess());
+
     setTimeout(() => {
       router.push("/mytasks/todolist");
     }, 2000);

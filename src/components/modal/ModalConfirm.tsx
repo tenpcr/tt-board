@@ -1,9 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Modal from "react-modal";
-import { TbTrash } from "react-icons/tb";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
-function ModalDelete({ show, toDelete, onClose, title, detail }: any) {
+interface ModalConfirmProps {
+  show: boolean;
+  toConfirm: () => void;
+  onClose: () => void;
+  title?: string;
+  detail?: string;
+}
+
+function ModalConfirm({
+  show,
+  toConfirm,
+  onClose,
+  title,
+  detail,
+}: ModalConfirmProps) {
   const { t } = useTranslation();
 
   const afterOpenModal = () => {
@@ -15,9 +29,9 @@ function ModalDelete({ show, toDelete, onClose, title, detail }: any) {
     onClose();
   };
 
-  const handleToDelete = () => {
+  const handleToConfirm = () => {
     document.body.style.overflow = "auto";
-    toDelete();
+    toConfirm();
     onClose();
   };
 
@@ -32,7 +46,7 @@ function ModalDelete({ show, toDelete, onClose, title, detail }: any) {
       {title && (
         <div className="mb-4 flex items-center gap-x-3">
           <div className="flex-none">
-            <TbTrash size={25} />
+            <IoMdInformationCircleOutline size={25} />
           </div>
           <div className="flex-1 shrink">
             <span className="text-[20px] text-center text-[#171725] font-semibold ">
@@ -55,10 +69,10 @@ function ModalDelete({ show, toDelete, onClose, title, detail }: any) {
             {t("cancel")}
           </button>
           <button
-            onClick={handleToDelete}
+            onClick={handleToConfirm}
             className="bg-orange-500 hover:bg-orange-600 active:bg-orange-700 hover:text-white text-white font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
           >
-            {t("delete")}
+            {t("confirm")}
           </button>
         </div>
       </div>
@@ -84,4 +98,4 @@ const customStyles = {
   },
 };
 
-export default ModalDelete;
+export default ModalConfirm;

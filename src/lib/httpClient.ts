@@ -3,7 +3,7 @@ import axios from "axios";
 import type { InternalAxiosRequestConfig } from "axios";
 
 const connectInstance = axios.create({
-  baseURL: "http://localhost:5008",
+  baseURL: process.env.NEXT_PUBLIC_SERVER_API,
 });
 
 connectInstance.interceptors.request.use(

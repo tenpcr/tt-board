@@ -75,7 +75,6 @@ export const getDate = (
   if (datetime !== null) {
     const dt = DateTime.fromISO(datetime);
     const f = type === "dot" ? "LLL d. yyyy" : "LLL d, yyyy";
-
     if (lang === "th") {
       return `${dt.get("day")} ${
         type === "short"
@@ -91,7 +90,6 @@ export const getDate = (
 
 export const getTime = (time: string, lang: "en" | "th"): string => {
   let hours = Number(DateTime.fromISO(time).toFormat("HH"));
-
   if (lang === "en" && hours > 12) {
     hours = hours - 12;
   } else if (lang === "en" && hours === 0) {
@@ -113,4 +111,15 @@ export const getDateTime = (
   } else {
     return "-";
   }
+};
+
+export const numberFormat = (number: number) => {
+  return number?.toLocaleString();
+};
+
+export const isoToDatetimeLocal = (isoString: string) => {
+  const date = new Date(isoString);
+  const offset = date.getTimezoneOffset();
+  date.setMinutes(date.getMinutes() - offset);
+  return date.toISOString().slice(0, 16);
 };
