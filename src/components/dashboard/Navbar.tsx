@@ -81,7 +81,7 @@ function NavbarDashboard() {
                       />
                     </div>
                     <div className="font-semibold text-gray-500 text-[15px] line-clamp-1 flex-1 shrink">
-                      TT-SS Team
+                      Pachara Peerakuntanet
                     </div>
                   </div>
                 )}

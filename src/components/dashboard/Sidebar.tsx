@@ -41,7 +41,7 @@ function SidebarDashboard() {
   return (
     <div className="bg-[#0f1d41] text-[#d4e4ef] text-[14px] w-[250px] h-full  flex flex-col">
       <div className="py-[15px] px-[20px] flex justify-center border-b border-slate-500">
-        <div className="bg-[url(/images/logo-white.svg)] bg-no-repeat bg-contain h-[30px] border-white aspect-[205/50]"></div>
+        <div className="bg-[url(/images/logo-white.webp)] bg-no-repeat bg-contain h-[30px] border-white aspect-[205/50]"></div>
       </div>
       <aside className="py-[15px] flex-1 shrink overflow-y-auto p-[10px]">
         <div className="flex flex-col gap-[10px]">

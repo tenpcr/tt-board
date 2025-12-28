@@ -40,7 +40,7 @@ const Card = ({ _id, title, type }: CardType) => {
         </div>
         <div className="flex-none">
           <div
-            className="z-[9999] hidden group-hover:block rounded-[5px] bg-orange-500 hover:bg-orange-600 active:bg-orange-700 py-[3px] px-[10px] text-[12px] text-white cursor-pointer"
+            className="z-[9999] hidden group-hover:block rounded-[5px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 py-[3px] px-[10px] text-[12px] text-white cursor-pointer"
             onClick={() => {
               dispatch(openTaskView({ taskId: _id }));
             }}

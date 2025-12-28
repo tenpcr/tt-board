@@ -29,7 +29,7 @@ function KanbanBoard({ reloadTask, onReload }: KanbanBoardProps) {
         if (response?.status === 200) {
           setColumns(response?.data?.data);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.log(error);
       }
     };
@@ -137,7 +137,7 @@ function KanbanBoard({ reloadTask, onReload }: KanbanBoardProps) {
     })
   );
 
-  const handleChangeProgress = async (taskId: any, progressId: any) => {
+  const handleChangeProgress = async (taskId: string, progressId: string) => {
     if (taskId) {
       try {
         const formData = {
@@ -151,7 +151,7 @@ function KanbanBoard({ reloadTask, onReload }: KanbanBoardProps) {
         if (response?.status === 200) {
           onReload();
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.log(error);
       }
     }

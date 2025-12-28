@@ -48,7 +48,7 @@ function MytasksTab({ onClickAddTask }: MytasksTabProps) {
       <div>
         <button
           onClick={onClickAddTask}
-          className="flex flex-row gap-[5px] items-center text-[14px] border-1 border-orange-500 text-white px-[20px] py-[10px] rounded-[10px] bg-orange-500 hover:bg-orange-600 active:bg-orange-700 hover:text-white transition cursor-pointer"
+          className="flex flex-row gap-[5px] items-center text-[14px] border-1 border-blue-500 text-white px-[20px] py-[10px] rounded-[10px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 hover:text-white transition cursor-pointer"
         >
           <div className="flex-none">
             <IoMdAdd size={20} />

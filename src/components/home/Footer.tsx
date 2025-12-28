@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import DropdownLanguage from "@/components/dropdown/Language";
+import DropdownLanguage from "@/components/Dropdown/LanguageDropdown";
 
 import {
   FaLinkedinIn,
@@ -18,7 +18,7 @@ interface MenuTypes {
 
 interface SocialTypes {
   name: string;
-  icon: any;
+  icon: any,
   href: string;
 }
 
@@ -26,22 +26,22 @@ const socials: SocialTypes[] = [
   {
     name: "LinkedIn",
     icon: FaLinkedinIn,
-    href: "https://www.linkedin.com/company/t-t-software-solution",
+    href: "#",
   },
   {
     name: "Facebook",
     icon: FaFacebookSquare,
-    href: "https://www.facebook.com/ttsoftwaresolution",
+    href: "#",
   },
   {
     name: "YouTube",
     icon: FaYoutube,
-    href: "https://www.youtube.com/@ttsoftwaresolution",
+    href: "#",
   },
   {
     name: "GitHub",
     icon: FaGithub,
-    href: "https://github.com/T-T-Software-Solution",
+    href: "#",
   },
 ];
 
@@ -55,37 +55,37 @@ function HomeFooter() {
     },
     {
       label: t("products_services"),
-      href: "https://www.tt-ss.net/en/services",
+      href: "#",
       target: "blank",
     },
     {
       label: t("our_works"),
-      href: "https://www.tt-ss.net/en/our-works",
+      href: "#",
       target: "blank",
     },
     {
       label: t("standards_n_certifications"),
-      href: "https://www.tt-ss.net/en/our-standard",
+      href: "#",
       target: "blank",
     },
     {
       label: t("our_team"),
-      href: "https://www.tt-ss.net/en/our-team",
+      href: "#",
       target: "blank",
     },
     {
       label: t("resources"),
-      href: "https://portal.tt-ss.net/",
+      href: "#",
       target: "blank",
     },
     {
       label: t("career"),
-      href: "https://www.tt-ss.net/en/career",
+      href: "#",
       target: "blank",
     },
     {
       label: t("contact_us"),
-      href: "https://www.tt-ss.net/en/contact-us",
+      href: "#",
       target: "blank",
     },
   ];
@@ -96,7 +96,7 @@ function HomeFooter() {
         <div className="w-full flex flex-row">
           <div className="flex-none">
             <Link href="/">
-              <img src="/images/logo-black.svg" className="h-[30px]" />
+              <img src="/images/logo-black.webp" className="h-[30px]" />
             </Link>
           </div>
           <div className="flex-1 shrink grid grid-cols-4 gap-[15px]">
@@ -129,13 +129,13 @@ function HomeFooter() {
             <div>
               <DropdownLanguage />
             </div>
-            <div>© 2025 T.T. Software Solution. All rights reserved.</div>
+            <div>© 2026 TenPCR. All rights reserved.</div>
           </div>
           <div className="flex flex-wrap gap-[10px] justify-end">
             {socials?.map((itemSocial: SocialTypes, indexSocial: number) => (
               <Link href={itemSocial.href} key={indexSocial} legacyBehavior>
                 <a target="_blank">
-                  <button className="rounded-full bg-gray-400 hover:bg-orange-600 active:bg-orange-700 text-white h-[35px] aspect-[1/1] flex justify-center items-center cursor-pointer">
+                  <button className="rounded-full bg-gray-400 hover:bg-blue-600 active:bg-blue-700 text-white h-[35px] aspect-[1/1] flex justify-center items-center cursor-pointer">
                     {itemSocial.icon && <itemSocial.icon size={18} />}
                   </button>
                 </a>

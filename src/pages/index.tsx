@@ -32,7 +32,7 @@ function Homepage() {
 
       <HomeNavbar />
 
-      <div className="bg-gradient-to-b via-white from-orange-50 to-white">
+      <div className="bg-gradient-to-b via-white from-blue-50 to-white">
         <div className="w-full">
           <div className="w-[1280px] mx-auto py-[80px] flex justify-center items-center flex-col gap-[10px]">
             <div className="text-[50px] font-bold text-gray-800 leading-[1.3em] text-center">
@@ -43,7 +43,7 @@ function Homepage() {
             </div>
             <div className="mt-[20px]">
               <Link href="/login">
-                <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-orange-500 text-white px-[30px] py-[12px] rounded-full hover:bg-orange-600 active:bg-orange-700 transition cursor-pointer">
+                <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-blue-500 text-white px-[30px] py-[12px] rounded-full hover:bg-blue-600 active:bg-blue-700 transition cursor-pointer">
                   {t("get_started")} <FaArrowRight />
                 </button>
               </Link>
@@ -59,13 +59,13 @@ function Homepage() {
               animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <img src="/images/home/preview.png" />
+              <img src="/images/home/preview.webp" />
             </motion.div>
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-orange-50 py-[60px] mt-[80px]">
+      <div className="w-full bg-blue-50 py-[60px] mt-[80px]">
         <div className="w-[1280px] mx-auto flex justify-center items-center flex-col gap-[30px]">
           <div className="text-[35px] font-bold text-gray-800 leading-[0.9em]">
             {t("try_system_project_name_for_free", {
@@ -74,7 +74,7 @@ function Homepage() {
           </div>
           <div>
             <Link href="/login">
-              <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-orange-500 text-white px-[30px] py-[12px] rounded-full hover:bg-orange-600 active:bg-orange-700 transition cursor-pointer">
+              <button className="flex flex-row gap-[10px] items-center text-[18px] font-light bg-blue-500 text-white px-[30px] py-[12px] rounded-full hover:bg-blue-600 active:bg-blue-700 transition cursor-pointer">
                 {t("get_started")} <FaArrowRight />
               </button>
             </Link>

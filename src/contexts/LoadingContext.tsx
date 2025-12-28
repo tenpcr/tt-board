@@ -27,7 +27,7 @@ export const LoadingProvider = ({ children }: { children: ReactNode }) => {
         <div className="fixed w-full h-full bg-white/60 top-0 left-0 z-[99999] flex items-center justify-center">
         
           <HashLoader
-            color="#e87b35"
+            color="#2196f3"
             loading={isLoading}
             cssOverride={override}
             size={100}

@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import * as taskService from "@/services/taskService";
-import { TaskTypeState } from "@/types/taskTypes";
+import { TaskTypeState, TaskNewType, EditTaskProps } from "@/types/taskTypes";
 import * as helper from "@/utils/helper";
 
 const InputCKeditor = dynamic(() => import("@/components/form/InputCKeditor"), {
@@ -20,7 +19,13 @@ const taskTypeDefault: TaskTypeState[] = [
   },
 ];
 
-function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
+function EditTask({
+  task,
+  setTaskNew,
+  onCancel,
+  toSave,
+  alert,
+}: EditTaskProps) {
   const { t } = useTranslation();
   const [taskType, setTaskType] = useState<TaskTypeState[]>(taskTypeDefault);
 
@@ -31,7 +36,7 @@ function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
         if (response?.status === 200) {
           setTaskType(response?.data?.data);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.log("Failed to fetch task types:", error);
       }
     };
@@ -52,7 +57,7 @@ function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
                 <input
                   value={task?.title}
                   onChange={(event) => {
-                    setTaskNew((draft: any) => {
+                    setTaskNew((draft: TaskNewType) => {
                       draft.title = event.target.value;
                     });
                   }}
@@ -79,7 +84,8 @@ function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
                       value={task?.type?._id}
                       name="color"
                       onChange={(event) => {
-                        setTaskNew((draft: any) => {
+                        setTaskNew((draft: TaskNewType) => {
+                          if (!draft.type) draft.type = {};
                           draft.type.label = event.target.name;
                           draft.type._id = event.target.value;
                         });
@@ -116,7 +122,7 @@ function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
                       }
                       onChange={(event) => {
                         console.log(event.target.value);
-                        setTaskNew((draft: any) => {
+                        setTaskNew((draft: TaskNewType) => {
                           draft.due_date = event.target.value;
                         });
                       }}
@@ -136,8 +142,8 @@ function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
 
                 <InputCKeditor
                   value={task?.description}
-                  onChange={(event: any) => {
-                    setTaskNew((draft: any) => {
+                  onChange={(event: string) => {
+                    setTaskNew((draft: TaskNewType) => {
                       draft.description = event;
                     });
                   }}
@@ -151,13 +157,13 @@ function EditTask({ task, setTaskNew, onCancel, toSave, alert }: any) {
           <div className="flex gap-x-[15px] justify-end">
             <button
               onClick={onCancel}
-              className="hover:bg-gray-100 text-orange-500 font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
+              className="hover:bg-gray-100 text-blue-500 font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
             >
               {t("cancel")}
             </button>
             <button
               onClick={toSave}
-              className="bg-orange-500 hover:bg-orange-600 active:bg-orange-700 hover:text-white text-white font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
+              className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 hover:text-white text-white font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
             >
               {t("save")}
             </button>

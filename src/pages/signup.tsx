@@ -8,7 +8,7 @@ import { useImmer } from "use-immer";
 import * as helper from "@/utils/helper";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
-import DropdownLanguage from "@/components/dropdown/Language"
+import DropdownLanguage from "@/components/Dropdown/LanguageDropdown"
 
 interface InputDataTypes {
   firstname: string;
@@ -33,9 +33,9 @@ const override: CSSProperties = {
 };
 
 const inputDataDefault: InputDataTypes = {
-  firstname: "T.T. Software",
-  lastname: "Solution",
-  email: "admin@tt-ss.net",
+  firstname: "Pachara",
+  lastname: "Peerakuntanet",
+  email: "contact@tenpcr.com",
   password: "12345678",
   confirm_password: "12345678",
 };
@@ -148,7 +148,7 @@ function Signup() {
         <div className="flex flex-col gap-[20px] flex-1 justify-between">
           <section className="w-full flex justify-center">
             <Link href="/">
-              <img src="/images/logo-white.svg" className="h-[40px] w-auto" />
+              <img src="/images/logo-white.webp" className="h-[40px] w-auto" />
             </Link>
           </section>
           <motion.div
@@ -300,7 +300,7 @@ function Signup() {
                     <button
                       type="submit"
                       onClick={toSignup}
-                      className="w-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 transition text-white py-[13px] px-[15px] rounded text-[14px] cursor-pointer font-medium"
+                      className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 transition text-white py-[13px] px-[15px] rounded text-[14px] cursor-pointer font-medium"
                     >
                       {isLoading ? (
                         <PulseLoader

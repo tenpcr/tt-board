@@ -21,7 +21,7 @@ export const getTaskTypes = (): any => {
   return httpClient.get("/tasks/types");
 };
 
-export const updateTaskById = (id: string, formData: any) => {
+export const updateTaskById = (id: string | undefined, formData: any) => {
   return httpClient.put(`/tasks/${id}`, formData);
 };
 

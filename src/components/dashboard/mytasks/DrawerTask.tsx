@@ -16,20 +16,19 @@ import { closeTaskView } from "@/redux/slices/taskViewSlice";
 import * as taskService from "@/services/taskService";
 import * as boardService from "@/services/boardService";
 import * as Helper from "@/utils/helper";
-import {
-  DrawerTaskProps,
-  DrawerTaskType,
-  TaskTypeState,
-} from "@/types/taskTypes";
+import { DrawerTaskProps, DrawerTaskType, AlertType } from "@/types/taskTypes";
 import { Trans } from "react-i18next";
 import { useLoading } from "@/hooks/useLoading";
 import EditTask from "./EditTask";
 import { useImmer } from "use-immer";
 import { toastify } from "@/lib/notification";
 
-interface AlertType {
-  title?: string;
-}
+
+type BoardsType = {
+  _id: string;
+  name: string;
+  color: string;
+};
 
 const taskDefault: DrawerTaskType = {
   _id: "",
@@ -47,7 +46,7 @@ function DrawerTask({ onReload }: DrawerTaskProps) {
   const dispatch = useDispatch();
   const [task, setTask] = useState<DrawerTaskType>(taskDefault);
   const [taskNew, setTaskNew] = useImmer<DrawerTaskType>(taskDefault);
-  const [boards, setBoards] = useState<any[]>([]);
+  const [boards, setBoards] = useState<BoardsType[]>([]);
   const [mode, setMode] = useState<"view" | "edit">("view");
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
   const taskViewState = useSelector((state: any) => state.taskView);
@@ -85,7 +84,8 @@ function DrawerTask({ onReload }: DrawerTaskProps) {
           if (response?.status === 200) {
             setBoards(response?.data?.data);
           }
-        } catch (error: any) {
+        } catch (error: unknown) {
+          console.log(error);
         } finally {
         }
       };
@@ -134,7 +134,7 @@ function DrawerTask({ onReload }: DrawerTaskProps) {
           handleCloseDrawer();
           onReload();
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         toastify("error", t("failed_to_delete_the_task"));
       } finally {
         loading.active && loading.active(false);
@@ -172,7 +172,7 @@ function DrawerTask({ onReload }: DrawerTaskProps) {
         onReload();
         setMode("view");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       toastify("error", t("update_failed_please_try_again"));
       console.log(error);
     } finally {
@@ -198,7 +198,7 @@ function DrawerTask({ onReload }: DrawerTaskProps) {
                   inputProps={{ "aria-label": "Without label" }}
                   className="bg-slate-100 rounded-[5px] text-gray-600 h-[45px] min-w-[150px] border-none"
                 >
-                  {boards?.map((boardItem: any, boardIndex: number) => (
+                  {boards?.map((boardItem: BoardsType, boardIndex: number) => (
                     <MenuItem value={boardItem?._id} key={boardIndex}>
                       <div className="flex flex-row gap-[8px] items-center ">
                         <div
@@ -374,7 +374,7 @@ function DrawerTask({ onReload }: DrawerTaskProps) {
               alert={alert}
               task={taskNew}
               task_id={task?._id}
-              setTaskNew={(data: any) => {
+              setTaskNew={(data) => {
                 setTaskNew(data);
               }}
               onCancel={() => {

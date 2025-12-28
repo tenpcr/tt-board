@@ -24,7 +24,7 @@ const override: CSSProperties = {
 };
 
 const inputDataDefault: InputDataTypes = {
-  email: "admin@tt-ss.net",
+  email: "contact@tenpcr.com",
 };
 
 const alertDefault: AlertTypes = {
@@ -91,7 +91,7 @@ function ForgotPassword() {
         <div className="flex flex-col gap-[20px] flex-1 justify-between">
           <section className="w-full flex justify-center">
             <Link href="/">
-              <img src="/images/logo-white.svg" className="h-[40px] w-auto" />
+              <img src="/images/logo-white.webp" className="h-[40px] w-auto" />
             </Link>
           </section>
           <motion.div
@@ -142,7 +142,7 @@ function ForgotPassword() {
                       type="submit"
                       onClick={toResetPassword}
                       disabled={isLoading}
-                      className="w-full items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 transition text-white py-[13px] px-[15px] rounded text-[14px] cursor-pointer font-medium"
+                      className="w-full items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 transition text-white py-[13px] px-[15px] rounded text-[14px] cursor-pointer font-medium"
                     >
                       {isLoading ? (
                         <PulseLoader

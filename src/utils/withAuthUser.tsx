@@ -19,14 +19,14 @@ function withAuthUser<P extends object>(WrappedComponent: ComponentType<P>) {
       return (
         <div className="flex flex-col w-full h-screen justify-center items-center gap-[20px]">
           <div>
-            <img src="/images/logo-black.svg" className="w-[200px]" />
+            <img src="/images/logo-black.webp" className="w-[200px]" />
           </div>
           <div className="text-[20px]">
             Please log in before accessing this page.
           </div>
           <div>
             <Link href="/login">
-              <button className="text-[14px] text-white px-4 py-2 rounded-[10px] bg-orange-500 hover:bg-orange-600 active:bg-orange-700  transition cursor-pointer">
+              <button className="text-[14px] text-white px-4 py-2 rounded-[10px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700  transition cursor-pointer">
                 {t("login")}
               </button>
             </Link>

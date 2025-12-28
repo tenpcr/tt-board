@@ -3,16 +3,15 @@
 import React from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { InputCKeditorProps } from "@/types/taskTypes";
 
 export default function InputCKeditor({
   value,
-
   onChange,
-
   height,
   resize,
   onReady,
-}: any) {
+}: InputCKeditorProps) {
   return (
     <>
       <div className="relative bg-white w-full">

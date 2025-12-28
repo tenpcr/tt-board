@@ -64,13 +64,13 @@ function ModalConfirm({
         <div className="flex gap-x-[10px] justify-end">
           <button
             onClick={closeModal}
-            className="hover:bg-gray-100 text-orange-500 font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
+            className="hover:bg-gray-100 text-blue-500 font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
           >
             {t("cancel")}
           </button>
           <button
             onClick={handleToConfirm}
-            className="bg-orange-500 hover:bg-orange-600 active:bg-orange-700 hover:text-white text-white font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
+            className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 hover:text-white text-white font-semibold py-[13px] px-[25px] rounded-[10px] cursor-pointer"
           >
             {t("confirm")}
           </button>
